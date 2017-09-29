@@ -2,9 +2,10 @@ import hashlib
 
 class Block():
 
-    def __init__(self, transaction, previousHash):
+    def __init__(self, transaction):
         self.transaction = transaction
-        self.hash = self.computeHash(previousHash)
+        self.previousHash = "0"
+        self.hash = self.computeHash()
 
-    def computeHash(self, previousHash):
-        return hashlib.sha256(self.transaction.toString() + previousHash).hexdigest()
+    def computeHash(self):
+        return hashlib.sha256(self.transaction.toString() + self.previousHash).hexdigest()
